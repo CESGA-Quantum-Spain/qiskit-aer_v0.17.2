@@ -29,6 +29,7 @@
 #include "transpile/fusion.hpp"
 
 #include "simulators/state.hpp"
+#include "simulators/simulators.hpp"
 
 namespace AER {
 

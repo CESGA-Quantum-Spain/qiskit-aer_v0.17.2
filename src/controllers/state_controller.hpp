@@ -118,6 +118,9 @@ public:
   // configure a device.
   virtual bool set_device(const std::string &name);
 
+  // set target gpus manually
+  virtual bool set_target_gpus(const reg_t &target_gpus);
+
   // configure a precision.
   virtual bool set_precision(const std::string &name);
 
@@ -567,6 +570,21 @@ bool AerState::set_device(const std::string &device_name) {
     return false;
   return true;
 };
+
+bool AerState::set_target_gpus(const reg_t &target_gpus)
+{
+  assert_not_initialized();
+  if (deice_ != Device::GPU)
+    return false;
+
+  const json_t target_gpus_config = {
+    {"device", "GPU"},
+    {"target_gpus", target_gpus}
+  };
+  state_->set_config(target_gpus_config);
+  
+  return true
+}
 
 bool AerState::set_precision(const std::string &precision_name) {
   assert_not_initialized();

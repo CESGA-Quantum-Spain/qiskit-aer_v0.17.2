@@ -574,7 +574,7 @@ bool AerState::set_device(const std::string &device_name) {
 bool AerState::set_target_gpus(const reg_t &target_gpus)
 {
   assert_not_initialized();
-  if (deice_ != Device::GPU)
+  if (device_ != Device::GPU)
     return false;
 
   const json_t target_gpus_config = {
